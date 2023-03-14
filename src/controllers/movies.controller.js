@@ -1,8 +1,8 @@
 // movies.controller.js
 const fs = require("fs");
 const path = require("path"); // import the path module
-
 const moviesModel = require('../models/movies.model');
+
 function getMovies(req, res) {
     console.log("hello from movies.controller.js")
     const directoryPath = "H:\\Bad Movies\\Movies"; // set the directory path to the current directory
@@ -22,6 +22,23 @@ function getMovies(req, res) {
     });
 }
 
+function getStoredMovieJson(req, res) {
+    console.log('storedJson api hit')
+    const filePath = 'H:/Bad Movies/jsonFiles/storedMovieJson.json';
+  
+    fs.readFile(filePath, 'utf8', (err, data) => {
+      if (err) {
+        console.error(err);
+        res.status(500).send('Internal server error');
+        return;
+      }
+  
+      const jsonData = JSON.parse(data);
+      res.json(jsonData);
+    });
+  }
+  
 module.exports = {
   getMovies,
+  getStoredMovieJson,
 };

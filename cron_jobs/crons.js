@@ -1,7 +1,18 @@
 const cron = require('node-cron');
 const fs = require('fs');
 
+/*The idea behind this file is to add some cron jobs that will replace the need for constant API calls
+and provide some stability if for some reason the server code becomes faulty. 
+
+It's also just for crons you stupid idiot
+
+*/
+
+
 console.log("starting cron jobs")
+
+
+// function that runs once a day that will scan for folders in a directory and store those folder names into a json file
 
 function dailyMovieJsonFileUpdater (){
     cron.schedule('0 0 * * *', () => {
