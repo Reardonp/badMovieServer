@@ -5,11 +5,11 @@ const { parseString } = require('xml2js');
 //Notes will probably have to use const encodedFolderName = encodeURIComponent(folderName); somepoint my Roulette Wheel reactJs App
 
 function getNfoContents(req, res) {
-    console.log(req.query.folderName)
-  const folderName = req.query.folderName;
-  const folderPath = `H:\\Bad Movies\\Movies\\${folderName}`;
+  // const fakefolder = "Ben & Arthur (2002)"
+  const encodedFolderName = encodeURIComponent(req.query.folderName);
+  //const folderName = req.query.folderName;
+  const folderPath = `H:\\Bad Movies\\Movies\\${decodeURIComponent(encodedFolderName)}`;
   const nfoFilePath = getNfoFilePath(folderPath);
-
   //console.log(folderName, folderPath, nfoFilePath)
   
   if (!nfoFilePath) {
@@ -22,7 +22,7 @@ function getNfoContents(req, res) {
       return res.status(500).json({ error: 'Failed to read NFO file' });
     }
     const nfoObject = parseNfo(data);
-    console.log("nfoObject " +nfoObject)
+    //console.log("nfoObject " +nfoObject)
     res.json(nfoObject);
   });
 }

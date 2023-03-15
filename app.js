@@ -11,7 +11,6 @@ app.use(corsMiddleware);
 
 app.use('/movies', moviesRouter);
 app.use('/nfo', nfoRouter);
-app.use('/storedJson',moviesRouter)
 
 cronJobs.dailyMovieJsonFileUpdater();
 app.listen(8888, function () {
