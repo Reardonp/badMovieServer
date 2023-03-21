@@ -1,67 +1,48 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const NfoSchema = new mongoose.Schema({
-  title: String,
-  originaltitle: String,
-  sorttitle: String,
-  year: Number,
-  ratings: [{
-    name: String,
-    value: Number,
-    votes: Number,
-    default: Boolean,
-    max: Number
-  }],
-  userrating: Number,
-  top250: Number,
-  set: String,
-  plot: String,
-  outline: String,
-  tagline: String,
-  runtime: Number,
-  thumb: String,
-  fanart: [{
-    thumb: String
-  }],
-  mpaa: String,
-  certification: String,
-  id: String,
-  tmdbid: String,
-  uniqueid: [{
-    type: String,
-    value: String,
-    default: Boolean
-  }],
-  country: String,
-  status: String,
-  code: String,
-  premiered: String,
-  watched: Boolean,
-  playcount: Number,
-  lastplayed: String,
-  genre: [String],
-  studio: String,
-  credits: [{
-    tmdbid: String,
-    name: String
-  }],
-  director: [{
-    tmdbid: String,
-    name: String
-  }],
-  tag: [String],
-  actor: [{
-    name: String,
-    role: String,
-    thumb: String,
-    profile: String,
-    tmdbid: String
-  }],
-  producer: [{
-    tmdbid: String,
-    name: String,
-    thumb: String
-  }]
+  title: { type: String },
+  originaltitle: { type: String },
+  sorttitle: { type: String },
+  epbookmark: { type: String },
+  year: { type: String },
+  ratings: [{ type: Object }],
+  userrating: { type: String },
+  top250: { type: String },
+  set: { type: String },
+  plot: { type: String },
+  outline: { type: String },
+  tagline: { type: String },
+  runtime: { type: String },
+  thumb: [{ type: Object }],
+  fanart: [{ type: Object }],
+  mpaa: { type: String },
+  certification: { type: String },
+  id: { type: String },
+  tmdbid: { type: String },
+  uniqueid: [{ type: Object }],
+  country: { type: String },
+  status: { type: String },
+  code: { type: String },
+  premiered: { type: String },
+  watched: { type: Boolean },
+  playcount: { type: Number },
+  lastplayed: { type: String },
+  genre: [{ type: String }],
+  studio: [{ type: String }],
+  credits: [{ type: Object }],
+  director: [{ type: Object }],
+  tag: [{ type: String }],
+  actor: [{ type: Object }],
+  producer: [{ type: Object }],
+  trailer: [{ type: String }],
+  languages: [{ type: String }],
+  dateadded: { type: Date },
+  fileinfo: [{ type: Object }],
+  source: { type: String },
+  edition: { type: String },
+  original_filename: { type: String },
+  user_note: { type: String },
 });
 
-module.exports = mongoose.model('Nfo', NfoSchema);
+module.exports = mongoose.model("Nfo", NfoSchema);
