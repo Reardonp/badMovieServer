@@ -1,9 +1,9 @@
 // movies.controller.js
 const fs = require("fs");
 const path = require("path"); // import the path module
-const moviesModel = require("../models/movies.model");
+const Movie = require("../models/movies.model");
 const nfoModel = require("../models/nfo.model");
-const mongoose = require('mongoose')
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 function getMovies(req, res) {
@@ -60,24 +60,25 @@ const createMovies2 = async (req, res) => {
   }
 };
 
-const createMovies = (movieData) => {
-  const movieSchema = new mongoose.Schema({});
-  for (const key in movieData) {
-    const dataType = typeof movieData[key];
-    movieSchema.add({
-      [key]: {
-        type: dataType === "object" ? mongoose.Schema.Types.Mixed : dataType,
-        required: true,
-      },
+async function createMovies(req, res){
+  // const movieDummy = {
+  //   title: "New Movie Dummy Data"
+  // }
+  console.log(req.body)
+  try {
+    const movie = await Movie.create({
+      ...req.body
     });
+    console.log(movie);
+    res.json(movie)
+  } catch (error){
+    res.status(500).json({messagge: error.message})
   }
-  return movieSchema;
-};
-
+}
 
 module.exports = {
   getMovies,
   getStoredMovieJson,
   createMovies2,
-  createMovies
+  createMovies,
 };

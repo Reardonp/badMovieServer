@@ -1,15 +1,11 @@
 // movies.model.js
+const mongoose = require("mongoose");
+console.log("movieschema")
 
-function getMovies() {
-    // logic to retrieve movies from database or file system
-    return [
-      { title: 'Movie 1', director: 'Director 1' },
-      { title: 'Movie 2', director: 'Director 2' },
-      // ...
-    ];
-  }
-  
-  module.exports = {
-    getMovies,
-  };
-  
+const MovieSchema = new mongoose.Schema(
+  {
+    title: { type: String, required: true },
+  },
+  { timestamps: true }
+);
+module.exports = mongoose.model("Movie", MovieSchema);
